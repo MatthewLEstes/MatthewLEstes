@@ -1,7 +1,30 @@
-### Hi there 👋
+# **Matthew Estes**
+## **Email: estesmw@mail.uc.edu**
+## **Phone: (913)-231-2144**
 
-My name is Matthew Estes. I am currertly a University of Cincinnati student studying Computer Science. I am expected to graduate in the Spring of 2025. 
-I'm looking for job opporunities so if you find any work of mine that peaks your intrest send me an email at estesmw@mail.uc.edu and I'll see if I can help.
+### **Co-op or other experience**
+- Software Enginner, KLH Engineers, Fort Thomas, Kentucky (4 semesters)
+  - Worked on pulling data from an appliciation called revit and pushing it to the web side
+  - Implemented UI changes to improve user experience based on feedback
+  - Created test cases to run when building solution to check that everything works
+  - Worked on add new entities to the database and managing the database entries
+
+### **Skills**
+- Programming: C#, C++, Java, .NET, Python, MatLab, 
+- Web Development: HTML, Javascript, CSS
+- Database: SQL
+
+### **Areas of Intrest**
+- Artificial Intelligence
+- Game making
+- Database design
+- Data Analysis
+- Machine Learning
+
+### **Type of project sought**
+- Developing a video game
+- Working with a web based project that interacts with a database
+- Anything that involves machine learning or artificial intelligence
 
 <!--
 **MatthewLEstes/MatthewLEstes** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
