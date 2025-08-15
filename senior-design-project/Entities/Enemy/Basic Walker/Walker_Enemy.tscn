@@ -1,0 +1,211 @@
+[gd_scene load_steps=19 format=3 uid="uid://cjxwfm7on3ii0"]
+
+[ext_resource type="Script" path="res://Entities/Enemy/Basic Walker/Walker_Enemy.gd" id="1_8jg57"]
+[ext_resource type="Texture2D" uid="uid://wjjg0m5pugau" path="res://Resources/Sprites/Enemies/skeleton-walk.png" id="2_hor1d"]
+[ext_resource type="PackedScene" uid="uid://cu77iqu4ph4v5" path="res://Entities/Shared Resources/Hitbox.tscn" id="3_0uf3w"]
+[ext_resource type="PackedScene" uid="uid://c1vt3jqxeo5ln" path="res://Entities/Shared Resources/Hurtbox.tscn" id="4_4kx0i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvlks"]
+radius = 9.0
+height = 36.0
+
+[sub_resource type="Shader" id="Shader_c8ucf"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : source_color;
+uniform float flash_value : hint_range(0.0,1.0,0.1);
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	COLOR = mix(texture_color, flash_color, flash_value);
+	COLOR.a = texture_color.a;
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0hah"]
+resource_local_to_scene = true
+shader = SubResource("Shader_c8ucf")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gns5s"]
+atlas = ExtResource("2_hor1d")
+region = Rect2(0, 35, 19, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cdxp"]
+atlas = ExtResource("2_hor1d")
+region = Rect2(0, 0, 19, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3nmf"]
+atlas = ExtResource("2_hor1d")
+region = Rect2(19, 0, 19, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xvt2"]
+atlas = ExtResource("2_hor1d")
+region = Rect2(0, 35, 19, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lca5n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gns5s")
+}],
+"loop": true,
+"name": &"Stunned",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cdxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3nmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xvt2")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n82wc"]
+size = Vector2(19, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucq1w"]
+size = Vector2(717.5, 164)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4hhr"]
+size = Vector2(17.5, 34)
+
+[sub_resource type="Animation" id="Animation_bwqvf"]
+resource_name = "Flash"
+length = 0.33
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_kynay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rlqq"]
+_data = {
+"Flash": SubResource("Animation_bwqvf"),
+"RESET": SubResource("Animation_kynay")
+}
+
+[node name="WalkerEnemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_8jg57")
+Damage = 10.0
+MaxHP = 25
+CurrentHP = 25
+
+[node name="Collision (Terrain)" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_fvlks")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_j0hah")
+sprite_frames = SubResource("SpriteFrames_lca5n")
+animation = &"Walk"
+frame_progress = 0.958933
+
+[node name="Hitbox" parent="." instance=ExtResource("3_0uf3w")]
+collision_layer = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_n82wc")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ucq1w")
+
+[node name="PlayerRaycast" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(0, -65)
+target_position = Vector2(158, 4)
+collision_mask = 3
+
+[node name="WallRaycast" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(1, 7)
+target_position = Vector2(27, 0)
+
+[node name="FloorRaycast" type="RayCast2D" parent="."]
+position = Vector2(18, 13)
+target_position = Vector2(0, 137)
+
+[node name="JumpRaycast" type="RayCast2D" parent="."]
+position = Vector2(0, -25)
+target_position = Vector2(38, 0)
+
+[node name="PlayerAggroTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Attempt Reaggro" type="Timer" parent="."]
+one_shot = true
+
+[node name="TEST_PHASE_INDICATOR" type="Label" parent="."]
+visible = false
+offset_left = -19.0
+offset_top = -47.0
+offset_right = 21.0
+offset_bottom = -24.0
+
+[node name="TurnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_4kx0i")]
+visible = false
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_h4hhr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4rlqq")
+}
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="PlayerDetection"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="PlayerDetection_Leave"]
+[connection signal="timeout" from="PlayerAggroTimer" to="." method="DropAggro"]
+[connection signal="timeout" from="StunTimer" to="." method="EndStun"]
+[connection signal="timeout" from="Attempt Reaggro" to="." method="PlayerDetection"]
+[connection signal="timeout" from="TurnTimer" to="." method="CanTurn"]

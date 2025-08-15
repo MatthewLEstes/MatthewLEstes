@@ -1,0 +1,86 @@
+[
+	{
+		"Name": "Swiftness",
+		"Effects": {
+			"Move":50
+			}
+	},
+	{
+		"Name": "Vitality",
+		"Effects": {
+			"MaxHP":40
+			}
+	},
+	{
+		"Name": "Protection Veil",
+		"Effects": {
+			"Armor":5
+			}
+	},
+	{
+		"Name": "Alacrity",
+		"Effects": {
+			"AttackSpeed":0.7
+			}
+	},
+	{
+		"Name": "Strength",
+		"Effects": {
+			"AttackDamage":10
+			}
+	},
+	{
+		"Name": "Tome of Accuracy",
+		"Effects": {
+			"CritChance":0.2
+			}
+	},
+	{
+		"Name": "Tome of Lethality",
+		"Effects": {
+			"CritDamage":0.3
+			}
+	},
+	{
+		"Name": "Rejuvination",
+		"Effects": {
+			"HealthRegen":7
+			}
+	},
+	{
+		"Name": "Star Veil",
+		"Effects": {
+			"RegeneratingShield":true
+			}
+	},
+	{
+		"Name": "Hermes Boots",
+		"Effects": {
+			"DoubleJump":true
+			}
+	},
+	{
+		"Name": "Readiness",
+		"Effects": {
+			"CooldownBonusDamage":true
+			}
+	},
+	{
+		"Name": "Torch",
+		"Effects": {
+			"BurnDamage":10
+			}
+	},
+	{
+		"Name": "Vampiric Essence",
+		"Effects": {
+			"Lifesteal":0.2
+			}
+	},
+	{
+		"Name": "Quickness",
+		"Effects": {
+			"CoolDown":0.7
+			}
+	}
+]
