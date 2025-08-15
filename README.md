@@ -10,9 +10,20 @@
   - Worked on add new entities to the database and managing the database entries
 
 ### **Skills**
-- Programming: C#, C++, Java, .NET, Python, MatLab, 
+- Programming: C#, C++, Java, .NET, Python, MatLab
 - Web Development: HTML, Javascript, CSS
-- Database: SQL
+- Database: SQL, MySQL
+
+### **Projects**
+- [University of Cincinnati Senior Design Project](./senior-design-project/)
+  - 2d roguelike platforming game with dynamic enemies that can be avoided or defeated
+  - Created using GDScript in Godot
+  - Includes randomized items to change up gameplay between runs
+- [Cincinnati State Capstone Project](./DuvallPoolCapstone/)
+  - System for viewing and managing day-to-day data about the business
+  - Maintains a database storing information about inventory, services rendered, and employee work hours
+  - Includes forms to update, add, and remove data to fully manage the system
+  - Filled with nonsense test data
 
 ### **Areas of Intrest**
 - Artificial Intelligence
