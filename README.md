@@ -24,7 +24,7 @@
   - Maintains a database storing information about inventory, services rendered, and employee work hours
   - Includes forms to update, add, and remove data to fully manage the system
   - Filled with nonsense test data
-- [Simple Number Guessing Game](https://github.com/Firenado15/Number-Guessing-Game/tree/main)
+- [Simple Number Guessing Game](https://github.com/Firenado15/Number-Guessing-Game/tree/main) **Work in Progress**
   - Written in C++
   - Shows off taking user input, continuing until a condition is met, and saving information to a text file
   - Allows user to set parameters for game and runs until they want to stop
