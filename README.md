@@ -26,7 +26,7 @@
   - Filled with nonsense test data
 - [Simple Number Guessing Game](https://github.com/Firenado15/Number-Guessing-Game/tree/main)
   - Written in C++
-  - Shows off taking user input, continuing until a condition is met, and saving information
+  - Shows off taking user input, continuing until a condition is met, and saving information to a text file
   - Allows user to set parameters for game and runs until they want to stop
 
 ### **Areas of Intrest**
